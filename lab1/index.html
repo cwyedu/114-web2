@@ -1,1 +1,191 @@
-lab1
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>簡單隨機抽籤器</title>
+    <style>
+        /* CSS 樣式：負責網頁的外觀 */
+        :root {
+            --primary-color: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+        }
+
+        body {
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            resize: none;
+            box-sizing: border-box;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .result-area {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background-color: #f1f5f9;
+            min-height: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #result-name {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #ef4444; /* 抽中的名字顯示紅色 */
+            margin: 0;
+        }
+
+        .placeholder-text {
+            color: #94a3b8;
+            font-style: italic;
+        }
+
+        /* 簡單的動畫效果 */
+        .pop-effect {
+            animation: pop 0.3s ease-out;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎲 隨機抽籤器</h1>
+        
+        <div class="input-group">
+            <label for="name-list">輸入名單 (每行一個名字)：</label>
+            <textarea id="name-list" placeholder="例如：&#10;王小明&#10;李大華&#10;張美麗"></textarea>
+        </div>
+
+        <button onclick="drawWinner()">開始抽籤！</button>
+
+        <div class="result-area">
+            <p id="result-label" class="placeholder-text">中獎者將顯示在此</p>
+            <p id="result-name"></p>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * JavaScript 邏輯：負責抽籤的計算
+         */
+        function drawWinner() {
+            // 1. 取得文字框中的內容
+            const textArea = document.getElementById('name-list');
+            const resultLabel = document.getElementById('result-label');
+            const resultName = document.getElementById('result-name');
+
+            // 2. 將字串轉換為陣列
+            // split('\n') 依照換行符號切分
+            // filter(name => name.trim() !== '') 過濾掉空白行
+            const names = textArea.value.split('\n')
+                .map(name => name.trim())
+                .filter(name => name !== '');
+
+            // 3. 檢查名單是否為空
+            if (names.length === 0) {
+                alert('請先輸入至少一個名字喔！');
+                return;
+            }
+
+            // 4. 產生隨機索引 (Random Index)
+            // Math.random() 會產生 0 到 1 之間的隨機數
+            // 乘上長度後用 Math.floor 無條件捨去
+            const randomIndex = Math.floor(Math.random() * names.length);
+            const winner = names[randomIndex];
+
+            // 5. 顯示結果並加上小動畫
+            resultLabel.textContent = '恭喜抽中：';
+            resultLabel.classList.remove('placeholder-text');
+            
+            resultName.textContent = winner;
+            
+            // 重置動畫：移除再加入 class
+            resultName.classList.remove('pop-effect');
+            void resultName.offsetWidth; // 強制瀏覽器重繪，確保動畫能再次觸發
+            resultName.classList.add('pop-effect');
+        }
+    </script>
+
+</body>
+</html>

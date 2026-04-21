@@ -3,197 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>王大同的個人作業首頁</title>
+    <title>114 Web Labs</title>
     <style>
-        /* --- CSS 樣式直接寫在這裡 --- */
-        
-        /* 基本重置 (Reset) */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* 簡單耐看的樣式 */
         body {
-            font-family: "Microsoft JhengHei", Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f4f7f6;
-        }
-
-        /* 容器限制寬度並置中 */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* 導航欄樣式 */
-        header {
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav {
+            font-family: "Microsoft JhengHei", Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #2c3e50;
+        h1 {
+            color: #1a73e8;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            background-white: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: white;
+            text-align: center;
         }
 
         .nav-links {
             display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 20px;
+            gap: 20px;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #333;
-            transition: color 0.3s;
+            color: white;
+            background-color: #1a73e8;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #3498db;
+            background-color: #1557b0;
         }
 
-        /* 英雄區樣式 */
-        .hero {
-            background-color: #2c3e50;
-            color: white;
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .hero-content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 25px;
-            background-color: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #2980b9;
-        }
-
-        /* 內容區塊 */
-        .section {
-            padding: 40px 0;
-        }
-
-        h2 {
-            border-bottom: 2px solid #3498db;
-            display: inline-block;
-            margin-bottom: 20px;
-            padding-bottom: 5px;
-        }
-
-        /* 卡片排版 */
-        .grid {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            background: white;
-            padding: 20px;
-            flex: 1;
-            min-width: 250px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .card h3 {
-            color: #2980b9;
-            margin-bottom: 10px;
-        }
-
-        /* 頁腳 */
-        footer {
-            text-align: center;
-            padding: 20px 0;
-            background-color: #333;
-            color: white;
-            margin-top: 40px;
+        p {
+            margin-top: 25px;
+            color: #666;
         }
     </style>
 </head>
 <body>
 
-    <!-- 導航欄 -->
-    <header>
-        <nav class="container">
-            <div class="logo">王大同的空間</div>
-            <ul class="nav-links">
-                <li><a href="#">首頁</a></li>
-                <li><a href="#about">關於我</a></li>
-                <li><a href="#projects">我的作業</a></li>
-                <li><a href="#contact">聯絡方式</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- 英雄區 (Banner) -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>歡迎來到王大同的學習筆記</h1>
-            <p>這是我在高中生活中的探索與成長紀錄</p>
-            <a href="#about" class="btn">了解更多</a>
+    <div class="container">
+        <h1>114 Web Labs</h1>
+        
+        <div class="nav-links">
+            <a href="lab1/index.html">Lab 1</a>
+            <a href="lab2/index.html">Lab 2</a>
+            <a href="lab3/index.html">Lab 3</a>
         </div>
-    </section>
 
-    <!-- 內容介紹區 -->
-    <main class="container">
-        <section id="about" class="section">
-            <h2>關於我</h2>
-            <p>你好！我是王大同，一名高中生。這個網站是我用來展示課堂作業、專題研究以及生活點滴的地方。透過 HTML 與 CSS 的學習，我希望能將想法轉化為網頁。</p>
-        </section>
-
-        <section id="projects" class="section grid">
-            <div class="card">
-                <h3>國文作業</h3>
-                <p>關於《短歌行》的賞析與心得體悟。</p>
-            </div>
-            <div class="card">
-                <h3>數學專題</h3>
-                <p>探討幾何圖形在建築設計中的應用。</p>
-            </div>
-            <div class="card">
-                <h3>資訊課程</h3>
-                <p>初探網頁設計：我的第一個 HTML 頁面。</p>
-            </div>
-        </section>
-    </main>
-
-    <!-- 頁腳 -->
-    <footer>
-        <p>&copy; 2024 王大同 的高中作業展示. 保留所有權利.</p>
-    </footer>
+        <p>請選擇一個實驗室進入</p>
+    </div>
 
 </body>
 </html>
